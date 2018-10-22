@@ -28,8 +28,11 @@ class EchoHandler(BaseHTTPRequestHandler):
         self.send_header('Content-type', 'text/plain; charset=utf-8')
         self.end_headers()
 
+        # the echo message = the path less the 1st character '/'
+        echo = self.path[1:]
+
         # Now, write the response body.
-        self.wfile.write(self.path.encode())
+        self.wfile.write(echo.encode())
 
 if __name__ == '__main__':
     server_address = ('', 8000)  # Serve on all addresses, port 8000.
